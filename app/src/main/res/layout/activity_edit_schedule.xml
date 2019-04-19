@@ -55,6 +55,13 @@
                 android:textSize="25sp"
                 android:textStyle="bold"/>
 
+            <TextView
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:text="Cancel"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
         </TableRow>
 
         <TableRow android:layout_marginTop="0dp">
@@ -70,6 +77,12 @@
                 android:layout_weight="1"
                 android:text="CSPC34"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox1"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow >
@@ -85,6 +98,12 @@
                 android:layout_weight="1"
                 android:text="CSPC31"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox2"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow>
@@ -100,6 +119,12 @@
                 android:layout_weight="1"
                 android:text="CSPC32"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox3"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow>
@@ -115,6 +140,12 @@
                 android:layout_weight="1"
                 android:text="CSPC33"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox4"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow android:layout_marginTop="0dp">
@@ -130,6 +161,12 @@
                 android:layout_weight="1"
                 android:text="CSPC33"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox5"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow>
@@ -145,6 +182,12 @@
                 android:layout_weight="1"
                 android:text="CSPC33"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox6"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow>
@@ -160,6 +203,12 @@
                 android:layout_weight="1"
                 android:text="CSPC33"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox7"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
         <TableRow>
@@ -175,6 +224,12 @@
                 android:layout_weight="1"
                 android:text="CSPC33"
                 android:textSize="12sp" />
+            <CheckBox
+                android:id="@+id/checkbox8"
+                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </TableRow>
 
     </TableLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ public class EditSchedule extends AppCompatActivity implements AdapterView.OnIte
 
         EditText e1 = (EditText)findViewById(R.id.course1);
         e1.setEnabled(false);
+
+        CheckBox c1 = (CheckBox) findViewById(R.id.checkbox1);
+        c1.setEnabled(false);
 
 
         ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
