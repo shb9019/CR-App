@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TableRow
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Slot"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Course"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="30dp">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="8:30-9:20"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course1"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC34"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="9:20-10:10"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course2"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC31"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="10:30-11:20"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course3"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC32"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="11:20-12:10"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course4"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC33"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="25dp">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="1:30-2:20"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course5"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC33"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="2:20-3:10"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course6"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC33"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="3:30-4:20"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course7"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC33"
+                android:textSize="18dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="4:20-5:10"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/course8"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSPC33"
+                android:textSize="18dp" />
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</LinearLayout>
+

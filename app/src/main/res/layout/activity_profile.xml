@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Student Profile"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TableRow
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Roll Number"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/rollnumber"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="106116069"
+                android:textSize="18sp" />
+
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Department"
+                android:textSize="18sp" />
+
+            <TextView
+
+                android:id="@+id/department"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="CSE"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Semester"
+                android:textSize="18sp" />
+
+            <TextView
+
+                android:id="@+id/semester"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="VI"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="Section"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/section"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="A"
+                android:textSize="18sp" />
+        </TableRow>
+
+
+
+
+
+
+
+
+    </TableLayout>
+
+
+
+</LinearLayout>
+
