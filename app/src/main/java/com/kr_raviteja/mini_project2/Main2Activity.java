@@ -25,12 +25,25 @@ import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public SharedPreferences sp;
+
+    RequestQueue mRequestQueue;
+    StringRequest mStringRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +98,8 @@ public class Main2Activity extends AppCompatActivity
             createNotification();
         }
         else if (id == R.id.settings) {
-            Toast.makeText(this,"settings selected",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"settings selected",Toast.LENGTH_SHORT).show();
+            sendRequest();
         }
         else if(id == R.id.logout) {
             handleLogout();
@@ -143,5 +157,31 @@ public class Main2Activity extends AppCompatActivity
 
         mNotificationManager.notify(001, mBuilder.build());
 
+    }
+
+
+    //session create kaaledhu ani vasthondhi reply
+    public void sendRequest() {
+
+        String url = "http://10.0.2.2:3000/student/schedule";
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                return ;
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                return ;
+            }
+
+    });
+        mRequestQueue.add(mStringRequest);
     }
 }
