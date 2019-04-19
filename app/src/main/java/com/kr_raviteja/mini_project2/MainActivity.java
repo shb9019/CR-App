@@ -17,6 +17,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue mRequestQueue;
     StringRequest mStringRequest;
-    String url = "http://www.mocky.io/v2/5cba15423000001a3bbfa71a";
 
 
     @Override
@@ -49,31 +53,17 @@ public class MainActivity extends AppCompatActivity {
         username = usernamefield.getText().toString();
         password = passwordfield.getText().toString();
 
-        //Toast.makeText(this,username + " " + password,Toast.LENGTH_LONG).show();
-
-        if(!username.equals("106") && !username.equals("206") || !password.equals("106")) {
-            //Toast.makeText(this,"Wrong User Credentials",Toast.LENGTH_LONG).show();
-            return ;
-        }
 
         if(Pattern.matches("1.*",username)) {
-            //Toast.makeText(this,"student login",Toast.LENGTH_LONG).show();
             sp.edit().putBoolean("student_teacher",true).apply();
         }
         else if(Pattern.matches("2.*",username)) {
-            //Toast.makeText(this,"Teacher Login",Toast.LENGTH_LONG).show();
+
             sp.edit().putBoolean("student_teacher",false).apply();
         }
 
         sendRequest(username,password);
 
-        sp.edit().putBoolean("logged",true).apply();
-        sp.edit().putString("username",username).apply();
-        sp.edit().putString("password",password).apply();
-
-        gotodashboard();
-
-        return ;
     }
 
     public void gotodashboard() {
@@ -82,25 +72,52 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void sendRequest(String username, String password) {
-
+    public void sendRequest(final String username, final String password) {
 
 
         mRequestQueue = Volley.newRequestQueue(this);
+        String url = "http://10.0.2.2:3000/student/login";
 
-        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+
+
+        mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),"hello",Toast.LENGTH_LONG).show();
+
+                sp.edit().putBoolean("logged",true).apply();
+                sp.edit().putString("username",username).apply();
+                sp.edit().putString("password",password).apply();
+
+                gotodashboard();
+
                 Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                return ;
             }
-        }, new Response.ErrorListener() {
+        },
+
+                new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
+                return ;
             }
-        });
+        })
+
+        {
+            @Override
+            protected Map<String,String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("rollno",username);
+                params.put("password",password);
+
+                return params;
+            }
+        };
 
         mRequestQueue.add(mStringRequest);
     }
 }
+
+
