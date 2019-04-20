@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewStub;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,6 +32,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -70,6 +76,8 @@ public class Main2Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        sendRequest();
+
     }
 
     @Override
@@ -99,7 +107,7 @@ public class Main2Activity extends AppCompatActivity
             Toast.makeText(this,"notifications selected",Toast.LENGTH_SHORT).show();
             createNotification();
         }
-        else if (id == R.id.settings) {
+        else if (id == R.id.refresh) {
             //Toast.makeText(this,"settings selected",Toast.LENGTH_SHORT).show();
             sendRequest();
         }
@@ -175,7 +183,31 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("classes");
+                    for (int i=0; i < arr.length(); i++) {
+
+
+                        String coursename = arr.getJSONObject(i).getString("coursename");
+                        String starttime = arr.getJSONObject(i).getString("starttime");
+                        String endtime = arr.getJSONObject(i).getString("endtime");
+                        int slot = getSlot(starttime,endtime);
+                        String s1 = Integer.toString(slot);
+                        s1 = "course" + s1;
+
+                        int rid = getResources().getIdentifier(s1,"id",getPackageName());
+                        TextView tview = (TextView) findViewById(rid);
+                        tview.setText(coursename);
+                        Toast.makeText(getApplicationContext(),Integer.toString(slot),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                }
+
+
                 return ;
 
             }
@@ -191,7 +223,7 @@ public class Main2Activity extends AppCompatActivity
             @Override
             protected Map<String,String> getParams() {
                 Map<String,String> params = new HashMap<String, String>();
-                //Toast.makeText(getApplicationContext(),sp.getString("username",null),Toast.LENGTH_LONG).show();
+
                 params.put("rollno",sp.getString("username",null));
                 params.put("password",sp.getString("password",null));
 
@@ -199,5 +231,36 @@ public class Main2Activity extends AppCompatActivity
             }
         };
         mRequestQueue.add(mStringRequest);
+    }
+
+
+
+
+    public int getSlot(String starttime, String endtime) {
+
+        String hrs = starttime.substring(11,13);
+        String minutes = starttime.substring(14,16);
+        //Toast.makeText(getApplicationContext(),hrs + " " + minutes, Toast.LENGTH_LONG).show();
+
+        switch (Integer.parseInt(hrs)) {
+            case 8:
+                return 1;
+            case 9:
+                return 2;
+            case 10:
+                return 3;
+            case 11:
+                return 4;
+            case 1:
+                return 5;
+            case 2:
+                return 6;
+            case 3:
+                return 7;
+            default:
+                return 8;
+
+        }
+
     }
 }

@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Notifications" />
         <item
-            android:id="@+id/settings"
+            android:id="@+id/refresh"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Settings" />
+            android:title="Refresh" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_share"

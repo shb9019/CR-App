@@ -94,6 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     String type = obj.getString("type");
+                    String name = obj.getJSONObject("details").getString("name");
+                    String email = obj.getJSONObject("details").getString("email");
+                    String semester = obj.getJSONObject("details").getString("semester");
+                    String classid = obj.getJSONObject("details").getString("classid");
+
+                    sp.edit().putString("name",name).apply();
+                    sp.edit().putString("email",email).apply();
+                    sp.edit().putString("semester",semester).apply();
+                    sp.edit().putString("classid", classid).apply();
+
                     Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
                 }
                 catch (JSONException e) {
@@ -104,9 +114,11 @@ public class MainActivity extends AppCompatActivity {
                 sp.edit().putString("username",username).apply();
                 sp.edit().putString("password",password).apply();
 
+
+
                 gotodashboard();
 
-                //Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
                 return ;
             }
         },
