@@ -77,14 +77,87 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public void sendRequest(final String username, final String password) {
+    public void sendRequest(String username, String password) {
 
-        CookieManager manager = new CookieManager();
-        CookieHandler.setDefault( manager  );
+        String url ;
 
         mRequestQueue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:3000/student/login";
+        if(sp.getBoolean("student_teacher",true)) {
+            url = "http://10.0.2.2:3000/student/login";
+            //134.209.79.159
+            sendRequestStudent(username,password,url);
+        }
+        else {
+            url = "http://10.0.2.2:3000/teacher/login";
+            sendRequestTeacher(username,password,url);
+        }
+    }
 
+    public void sendRequestTeacher(final String username, final String password,final String url) {
+
+        mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String type = obj.getString("type");
+                    /*String name = obj.getJSONObject("details").getString("name");
+                    String email = obj.getJSONObject("details").getString("email");
+                    String semester = obj.getJSONObject("details").getString("semester");
+                    String classid = obj.getJSONObject("details").getString("classid");
+
+                    sp.edit().putString("name",name).apply();
+                    sp.edit().putString("email",email).apply();
+                    sp.edit().putString("semester",semester).apply();
+                    sp.edit().putString("classid", classid).apply();*/
+
+                    Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
+                }
+                catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                }
+
+                sp.edit().putBoolean("logged",true).apply();
+                sp.edit().putString("username",username).apply();
+                sp.edit().putString("password",password).apply();
+
+
+
+                gotodashboard();
+
+                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                return ;
+            }
+        },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
+                        return ;
+                    }
+                })
+
+        {
+            @Override
+            protected Map<String,String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("email",username);
+                params.put("password",password);
+
+                return params;
+            }
+        };
+
+        mRequestQueue.add(mStringRequest);
+    }
+
+
+
+    public void sendRequestStudent(final String username, final String password, String url) {
 
 
         mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
