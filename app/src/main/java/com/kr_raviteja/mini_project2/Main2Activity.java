@@ -32,6 +32,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -163,6 +165,9 @@ public class Main2Activity extends AppCompatActivity
     //session create kaaledhu ani vasthondhi reply
     public void sendRequest() {
 
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault( manager  );
+
         String url = "http://10.0.2.2:3000/student/schedule";
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -170,7 +175,7 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                 return ;
 
             }
@@ -181,7 +186,18 @@ public class Main2Activity extends AppCompatActivity
                 return ;
             }
 
-    });
+    })
+        {
+            @Override
+            protected Map<String,String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+                //Toast.makeText(getApplicationContext(),sp.getString("username",null),Toast.LENGTH_LONG).show();
+                params.put("rollno",sp.getString("username",null));
+                params.put("password",sp.getString("password",null));
+
+                return params;
+            }
+        };
         mRequestQueue.add(mStringRequest);
     }
 }

@@ -14,12 +14,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpClientStack;
+import com.android.volley.toolbox.HttpStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.CookieStore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -74,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendRequest(final String username, final String password) {
 
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault( manager  );
 
         mRequestQueue = Volley.newRequestQueue(this);
         String url = "http://10.0.2.2:3000/student/login";
@@ -84,13 +91,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String type = obj.getString("type");
+                    Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
+                }
+                catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                }
+
                 sp.edit().putBoolean("logged",true).apply();
                 sp.edit().putString("username",username).apply();
                 sp.edit().putString("password",password).apply();
 
                 gotodashboard();
 
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
                 return ;
             }
         },
@@ -118,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
         mRequestQueue.add(mStringRequest);
     }
+
 }
 
 
