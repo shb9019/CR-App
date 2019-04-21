@@ -13,14 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:text="Choose the class for changing schedule"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <Spinner
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
@@ -32,214 +24,54 @@
     </Spinner>
 
     <TableLayout
-        android:layout_marginTop="30dp"
+        android:id="@+id/schedule_table"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="335dp"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:scrollbars="vertical"
+        android:stretchColumns="*">
 
         <TableRow
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:background="#0079D6"
+            android:padding="5dp">
 
             <TextView
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Slot"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Course"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:gravity="center"
-                android:layout_weight="0.5"
-                android:text="Cancel"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
-
-        </TableRow>
-
-        <TableRow android:layout_marginTop="0dp">
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="8:30-9:20"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course1"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC34"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox1"
-                android:layout_weight="0.5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
-        </TableRow>
+                android:layout_weight="1"
+                android:text="Teacher"
+                android:textStyle="bold" />
 
-        <TableRow >
             <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="9:20-10:10"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course2"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC31"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox2"
-                android:layout_weight="0.5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_weight="1"
+                android:text=""
+                android:textStyle="bold" />
         </TableRow>
-
-        <TableRow>
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="10:30-11:20"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course3"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC32"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox3"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="11:20-12:10"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course4"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC33"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox4"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
-        <TableRow android:layout_marginTop="0dp">
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="1:30-2:20"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course5"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC33"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox5"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="2:20-3:10"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course6"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC33"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox6"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="3:30-4:20"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course7"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC33"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox7"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="4:20-5:10"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/course8"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="CSPC33"
-                android:textSize="12sp" />
-            <CheckBox
-                android:id="@+id/checkbox8"
-                android:layout_weight="0.5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </TableRow>
-
     </TableLayout>
-
     <Button
         android:onClick="onSubmit"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="15dp"
-        android:text="Submit"
+        android:text="Add Class"
         android:id="@+id/submitbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

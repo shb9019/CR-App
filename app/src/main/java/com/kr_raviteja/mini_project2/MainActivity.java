@@ -62,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if(Pattern.matches("1.*",username)) {
             sp.edit().putBoolean("student_teacher",true).apply();
         }
-        else if(Pattern.matches("2.*",username)) {
-
+        else {
             sp.edit().putBoolean("student_teacher",false).apply();
         }
 
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             sendRequestStudent(username,password,url);
         }
         else {
-            url = "http://10.0.2.2:3000/teacher/login";
+            url = "http://134.209.79.159:3000/teacher/login";
             sendRequestTeacher(username,password,url);
         }
     }
@@ -102,15 +101,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     String type = obj.getString("type");
-                    /*String name = obj.getJSONObject("details").getString("name");
-                    String email = obj.getJSONObject("details").getString("email");
-                    String semester = obj.getJSONObject("details").getString("semester");
-                    String classid = obj.getJSONObject("details").getString("classid");
 
-                    sp.edit().putString("name",name).apply();
-                    sp.edit().putString("email",email).apply();
-                    sp.edit().putString("semester",semester).apply();
-                    sp.edit().putString("classid", classid).apply();*/
+                    sp.edit().putString("email", username).apply();
+                    sp.edit().putString("password", password).apply();
+                    Integer emailLength = username.length();
+                    sp.edit().putString("name", username.substring(0, emailLength - 9)).apply();
 
                     Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
                 }
