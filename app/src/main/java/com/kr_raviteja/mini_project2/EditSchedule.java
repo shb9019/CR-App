@@ -253,6 +253,7 @@ public class EditSchedule extends AppCompatActivity {
 
             TextView timings = new TextView(this);
             timings.setText(classTimings[i - 1]);
+            timings.setPadding(10,10,10,10);
             classRow.addView(timings);
 
             if (slots.containsKey(i)) {
@@ -262,11 +263,13 @@ public class EditSchedule extends AppCompatActivity {
 
                     TextView course = new TextView(this);
                     course.setText(scheduleClass.getString("coursename"));
+                    course.setPadding(10,10,10,10);
                     classRow.addView(course);
 
                     TextView teacher = new TextView(this);
                     String teacherName = scheduleClass.getString("teachername");
                     teacher.setText(scheduleClass.getString("teachername"));
+                    teacher.setPadding(10,10,10,10);
                     classRow.addView(teacher);
 
                     Log.d("Debugging", sp.getString("name", "NRS"));
@@ -321,11 +324,11 @@ public class EditSchedule extends AppCompatActivity {
                 return 3;
             case 11:
                 return 4;
-            case 1:
+            case 13:
                 return 5;
-            case 2:
+            case 14:
                 return 6;
-            case 3:
+            case 15:
                 return 7;
             default:
                 return 8;
@@ -434,8 +437,7 @@ public class EditSchedule extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Cannot add class",Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -444,7 +446,7 @@ public class EditSchedule extends AppCompatActivity {
                 params.put("email", email);
                 params.put("password", password);
                 params.put("classname", className);
-                params.put("courseName", courseName);
+                params.put("coursename", courseName);
                 params.put("slot", slot.toString());
                 return params;
             }
