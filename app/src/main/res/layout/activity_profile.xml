@@ -17,19 +17,21 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Student Profile"
+            android:text="Profile"
             android:textSize="30sp"
             android:textStyle="bold"/>
 
     </LinearLayout>
 
     <TableLayout
+        android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TableRow
+            android:id="@+id/rowrollnumber"
             android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
@@ -53,6 +55,7 @@
 
 
         <TableRow
+            android:id="@+id/rowemail"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -74,6 +77,7 @@
 
 
         <TableRow
+            android:id="@+id/rowname"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
             <TextView
@@ -93,6 +97,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/rowsemester"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
             <TextView
@@ -112,6 +117,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/rowclass"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
             <TextView

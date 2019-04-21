@@ -176,12 +176,22 @@ public class Main2Activity extends AppCompatActivity
         CookieManager manager = new CookieManager();
         CookieHandler.setDefault( manager  );
 
-        String url = "http://10.0.2.2:3000/student/schedule";
+        String url;
+
+        if(sp.getBoolean("student_teacher",true)) {
+            url = "http://134.209.79.159:3000/student/schedule";
+            //134.209.79.159
+        }
+        else {
+            url = "http://134.209.79.159:3000/teacher/schedule";
+        }
+
         mRequestQueue = Volley.newRequestQueue(this);
 
         mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
 
                 try {
                     JSONObject obj = new JSONObject(response);
@@ -224,8 +234,16 @@ public class Main2Activity extends AppCompatActivity
             protected Map<String,String> getParams() {
                     Map<String,String> params = new HashMap<String, String>();
 
-                params.put("rollno",sp.getString("username",null));
-                params.put("password",sp.getString("password",null));
+                if(sp.getBoolean("student_teacher",true)) {
+                    params.put("rollno",sp.getString("username",null));
+                    params.put("password",sp.getString("password",null));
+                }
+                else {
+                    params.put("email",sp.getString("username",null));
+                    params.put("password",sp.getString("password",null));
+                }
+
+
 
                 return params;
             }
@@ -251,11 +269,11 @@ public class Main2Activity extends AppCompatActivity
                 return 3;
             case 11:
                 return 4;
-            case 1:
+            case 13:
                 return 5;
-            case 2:
+            case 14:
                 return 6;
-            case 3:
+            case 15:
                 return 7;
             default:
                 return 8;

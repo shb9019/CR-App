@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         mRequestQueue = Volley.newRequestQueue(this);
         if(sp.getBoolean("student_teacher",true)) {
-            url = "http://10.0.2.2:3000/student/login";
+            url = "http://134.209.79.159:3000/student/login";
             //134.209.79.159
             sendRequestStudent(username,password,url);
         }
