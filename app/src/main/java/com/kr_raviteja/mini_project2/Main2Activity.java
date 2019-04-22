@@ -172,18 +172,46 @@ public class Main2Activity extends AppCompatActivity
     //session create kaaledhu ani vasthondhi reply
     public void sendRequest() {
 
-        CookieManager manager = new CookieManager();
-        CookieHandler.setDefault( manager  );
-
         String url;
-
         if(sp.getBoolean("student_teacher",true)) {
             url = "http://134.209.79.159:3000/student/schedule";
+            sendRequest_student();
             //134.209.79.159
         }
         else {
             url = "http://134.209.79.159:3000/teacher/schedule2";
+            sendRequest_teacher();
         }
+    }
+
+    public int getSlot(String starttime, String endtime) {
+        String hrs = starttime.substring(11,13);
+
+        switch (Integer.parseInt(hrs)) {
+            case 8:
+                return 1;
+            case 9:
+                return 2;
+            case 10:
+                return 3;
+            case 11:
+                return 4;
+            case 13:
+                return 5;
+            case 14:
+                return 6;
+            case 15:
+                return 7;
+            default:
+                return 8;
+        }
+    }
+
+    public void sendRequest_student() {
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault( manager  );
+
+        String url = "http://134.209.79.159:3000/student/schedule";
 
         mRequestQueue = Volley.newRequestQueue(this);
 
@@ -221,45 +249,81 @@ public class Main2Activity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
             }
-    })
+        })
         {
             @Override
             protected Map<String,String> getParams() {
                 Map<String,String> params = new HashMap<String, String>();
 
-                if(sp.getBoolean("student_teacher",true)) {
                     params.put("rollno",sp.getString("username",null));
                     params.put("password",sp.getString("password",null));
-                } else {
-                    params.put("email",sp.getString("username",null));
-                    params.put("password",sp.getString("password",null));
-                }
+
                 return params;
             }
         };
         mRequestQueue.add(mStringRequest);
     }
 
-    public int getSlot(String starttime, String endtime) {
-        String hrs = starttime.substring(11,13);
 
-        switch (Integer.parseInt(hrs)) {
-            case 8:
-                return 1;
-            case 9:
-                return 2;
-            case 10:
-                return 3;
-            case 11:
-                return 4;
-            case 13:
-                return 5;
-            case 14:
-                return 6;
-            case 15:
-                return 7;
-            default:
-                return 8;
-        }
+
+    public void sendRequest_teacher() {
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault( manager  );
+
+        TextView t1 = (TextView) findViewById(R.id.courseheading);
+        t1.setText("Course/Class");
+
+        String url = "http://134.209.79.159:3000/teacher/schedule2";
+
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response);
+
+                try {
+                    JSONObject obj = new JSONObject(response);
+
+                    JSONArray arr = obj.getJSONArray("classes");
+                    for (int i=0; i < arr.length(); i++) {
+
+
+                        String coursename = arr.getJSONObject(i).getString("coursename");
+                        String starttime = arr.getJSONObject(i).getString("starttime");
+                        String endtime = arr.getJSONObject(i).getString("endtime");
+                        String classname = arr.getJSONObject(i).getString("classname");
+                        int slot = getSlot(starttime,endtime);
+                        String s1 = Integer.toString(slot);
+                        s1 = "course" + s1;
+
+                        int rid = getResources().getIdentifier(s1,"id",getPackageName());
+                        TextView tview = (TextView) findViewById(rid);
+                        tview.setText(coursename + "/" + classname);
+                        Log.d(TAG, Integer.toString(slot));
+                    }
+                }
+                catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+            }
+        })
+        {
+            @Override
+            protected Map<String,String> getParams() {
+                Map<String,String> params = new HashMap<String, String>();
+
+                    params.put("email",sp.getString("username",null));
+                    params.put("password",sp.getString("password",null));
+                return params;
+            }
+        };
+        mRequestQueue.add(mStringRequest);
+
     }
 }

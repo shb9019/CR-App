@@ -34,6 +34,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/courseheading"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:text="Course"
