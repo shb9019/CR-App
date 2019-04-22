@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, type);
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection with server",Toast.LENGTH_SHORT).show();
                 }
 
                 sp.edit().putBoolean("logged",true).apply();
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
                     }
                 })
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, type);
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
 
                 sp.edit().putBoolean("logged",true).apply();
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
             }
         })

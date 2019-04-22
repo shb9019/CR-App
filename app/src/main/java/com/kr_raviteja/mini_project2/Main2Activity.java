@@ -213,7 +213,7 @@ public class Main2Activity extends AppCompatActivity
                     }
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

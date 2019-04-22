@@ -121,14 +121,14 @@ public class EditSchedule extends AppCompatActivity {
                     classesAdapter.notifyDataSetChanged();
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -163,7 +163,7 @@ public class EditSchedule extends AppCompatActivity {
                     }
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
 
                 coursesAdapter.notifyDataSetChanged();
@@ -173,7 +173,7 @@ public class EditSchedule extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -204,14 +204,14 @@ public class EditSchedule extends AppCompatActivity {
                     renderSchedule(scheduleJsonArray);
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -349,14 +349,14 @@ public class EditSchedule extends AppCompatActivity {
                     Log.d("Debugging", obj.toString());
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"Wrong Credentials",Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -431,7 +431,7 @@ public class EditSchedule extends AppCompatActivity {
                     Log.d("Debugging", obj.toString());
                 }
                 catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"error in connection",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
