@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "106923634117",
+    "firebase_url": "https://cr-app-2.firebaseio.com",
+    "project_id": "cr-app-2",
+    "storage_bucket": "cr-app-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106923634117:android:ef8da4ad8461ee2e",
+        "android_client_info": {
+          "package_name": "com.kr_raviteja.mini_project2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106923634117-kg74897sdcr8trp968jgmvhcb95c5m1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLnlkxEn9KMjuIIXm0aRhwdjHFxxa0ydg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106923634117-kg74897sdcr8trp968jgmvhcb95c5m1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
