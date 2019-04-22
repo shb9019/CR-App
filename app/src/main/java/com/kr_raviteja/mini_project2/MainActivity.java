@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,8 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText usernamefield,passwordfield;
+    String TAG = "Toast Debug";
+    EditText usernamefield, passwordfield;
     SharedPreferences sp;
 
     RequestQueue mRequestQueue;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     Integer emailLength = username.length();
                     sp.edit().putString("name", username.substring(0, emailLength - 9)).apply();
 
-                    Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, type);
                 }
                 catch (JSONException e) {
                     Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
@@ -117,12 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 sp.edit().putString("username",username).apply();
                 sp.edit().putString("password",password).apply();
 
-
-
                 gotodashboard();
-
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
-                return ;
+                Log.d(TAG, response.toString());
             }
         },
 
@@ -130,9 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
                         Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
-                        return ;
                     }
                 })
 
@@ -172,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     sp.edit().putString("semester",semester).apply();
                     sp.edit().putString("classid", classid).apply();
 
-                    Toast.makeText(getApplicationContext(),type,Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, type);
                 }
                 catch (JSONException e) {
                     Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
@@ -181,13 +177,9 @@ public class MainActivity extends AppCompatActivity {
                 sp.edit().putBoolean("logged",true).apply();
                 sp.edit().putString("username",username).apply();
                 sp.edit().putString("password",password).apply();
-
-
-
                 gotodashboard();
 
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
-                return ;
+                Log.d(TAG, response.toString());
             }
         },
 
@@ -195,9 +187,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-
                 Toast.makeText(getApplicationContext(),"wrong credentials",Toast.LENGTH_LONG).show();
-                return ;
             }
         })
 
@@ -214,7 +204,4 @@ public class MainActivity extends AppCompatActivity {
 
         mRequestQueue.add(mStringRequest);
     }
-
 }
-
-

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -46,6 +47,7 @@ import java.util.Map;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String TAG = "Toast Debug";
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
     public SharedPreferences sp;
@@ -90,25 +92,22 @@ public class Main2Activity extends AppCompatActivity
         }
     }
 
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.profile) {
-            Toast.makeText(this,"profile selected",Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Profile Selected");
             Intent i = new Intent(this,ProfileActivity.class);
             startActivity(i);
         }
         else if (id == R.id.notifications) {
-            Toast.makeText(this,"notifications selected",Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Notifications Selected");
             createNotification();
         }
         else if (id == R.id.refresh) {
-            //Toast.makeText(this,"settings selected",Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Settings Selected");
             sendRequest();
         }
         else if(id == R.id.logout) {
@@ -117,10 +116,10 @@ public class Main2Activity extends AppCompatActivity
         else if(id == R.id.editschedule) {
 
             if(sp.getBoolean("student_teacher",true)) {
-                Toast.makeText(this,"not available",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Not Available",Toast.LENGTH_SHORT).show();
                 return false;
             }
-            Toast.makeText(this,"editschedule selected",Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Edit Schedule Selected");
             Intent i = new Intent(this,EditSchedule.class);
             startActivity(i);
         }
@@ -131,7 +130,7 @@ public class Main2Activity extends AppCompatActivity
     }
 
     public void handleLogout() {
-        Toast.makeText(this,"logout selected",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Logging Out...",Toast.LENGTH_SHORT).show();
         sp.edit().clear().apply();
 
         Intent i = new Intent(this,MainActivity.class);
@@ -191,7 +190,7 @@ public class Main2Activity extends AppCompatActivity
         mStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                Log.d(TAG, response);
 
                 try {
                     JSONObject obj = new JSONObject(response);
@@ -210,55 +209,39 @@ public class Main2Activity extends AppCompatActivity
                         int rid = getResources().getIdentifier(s1,"id",getPackageName());
                         TextView tview = (TextView) findViewById(rid);
                         tview.setText(coursename);
-                        Toast.makeText(getApplicationContext(),Integer.toString(slot),Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, Integer.toString(slot));
                     }
                 }
                 catch (JSONException e) {
                     Toast.makeText(getApplicationContext(),"press F",Toast.LENGTH_SHORT).show();
                 }
-
-
-                return ;
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-                return ;
             }
-
     })
         {
             @Override
             protected Map<String,String> getParams() {
-                    Map<String,String> params = new HashMap<String, String>();
+                Map<String,String> params = new HashMap<String, String>();
 
                 if(sp.getBoolean("student_teacher",true)) {
                     params.put("rollno",sp.getString("username",null));
                     params.put("password",sp.getString("password",null));
-                }
-                else {
+                } else {
                     params.put("email",sp.getString("username",null));
                     params.put("password",sp.getString("password",null));
                 }
-
-
-
                 return params;
             }
         };
         mRequestQueue.add(mStringRequest);
     }
 
-
-
-
     public int getSlot(String starttime, String endtime) {
-
         String hrs = starttime.substring(11,13);
-        String minutes = starttime.substring(14,16);
-        //Toast.makeText(getApplicationContext(),hrs + " " + minutes, Toast.LENGTH_LONG).show();
 
         switch (Integer.parseInt(hrs)) {
             case 8:
@@ -277,8 +260,6 @@ public class Main2Activity extends AppCompatActivity
                 return 7;
             default:
                 return 8;
-
         }
-
     }
 }
