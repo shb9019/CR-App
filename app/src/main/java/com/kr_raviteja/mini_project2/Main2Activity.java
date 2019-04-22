@@ -182,7 +182,7 @@ public class Main2Activity extends AppCompatActivity
             //134.209.79.159
         }
         else {
-            url = "http://134.209.79.159:3000/teacher/schedule";
+            url = "http://134.209.79.159:3000/teacher/schedule2";
         }
 
         mRequestQueue = Volley.newRequestQueue(this);
